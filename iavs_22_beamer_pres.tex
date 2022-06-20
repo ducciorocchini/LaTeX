@@ -1,0 +1,246 @@
+\documentclass{beamer}
+
+%  http://tex.stackexchange.com/questions/23147/getting-dots-to-show-up-in-beamer-headers
+%  How can I get the nice circles in the header of the slides?
+
+
+\usepackage[utf8]{inputenc}
+%\usepackage{default}
+\usepackage{remreset}
+\usepackage{graphicx}
+% \usepackage{simplewick}
+\usepackage{mathtools}
+% preferred Warsaw, Bergen, Goettingen
+
+\usetheme{Madrid} % Madrid for iavs Frederiksberg | Frankfurt | Execushares | Frankfurt
+% \usetheme{Berlin}
+\usecolortheme{crane} %crane for iavs  dolphin beaver
+% block styles
+\setbeamertemplate{blocks}[rounded][shadow=true]
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
+\setbeamertemplate{sidebar canvas left}[horizontal shading][left=white!40!black,right=black]
+\setbeamercolor{section in toc}{fg=structure}
+
+%  this can be used to draw dots as slides counters: cool!
+% \makeatletter
+% \@removefromreset{subsection}{section}
+% \makeatother
+% \setcounter{subsection}{1}
+
+
+\begin{document}
+
+\title[\\ ] % (optional, only for long titles)
+% {Cartograms for mapping sampling effort bias: 'croce e delizia del cor'\footnote{\tiny{This Italian expression comes out from the Traviata (1853) opera by Giuseppe Verdi. In English it is officially translated as `torment and delight of the heart'.}}} [per Madrid]
+{Cartograms for mapping sampling effort bias: `croce e delizia del cor'$^{\star}$}} 
+% \subtitle{Remote Sensing Challenges}
+\author[] % (optional, for multiple authors)
+{~{\tiny{Duccio Rocchini$^{1,2}$, Manuele Bazzichetto$^2$, Elisa Castelnuovo$^1$, Nicola Alessi$^3$, Alessandro Chiarucci, Ludovico Chieffallo$^1$, Michele Di Musciano$^4$, Carol Ximena Garzon-Lopez$^5$, Kate S. He$^6$, Ferenc Jord\'{a}n$^7$, Marco Malavasi$^2$, Matteo Marcantonio$^8$, Elisa Marchetto$^1$, Vítězslav Moudrý$^2$, Jakub Nowosad$^9$, Petra Ŝímová$^2$, Enrico Tordoni$^10$, Piero Zannini$^1$} 
+}}
+\institute[ ] % (optional)
+{
+% Fondazione Edmund Mach, Italy\\
+\\
+\centering                                        
+\tiny{$^1$ Alma Mater Studiorum University of Bologna (IT), $^2$ Czech University of Life Sciences Prague (CZ), $^1$ Isora (IT), $^4$ University of L'Aquila (IT), $^5$ University of Groningen (NL), $^6$ Murray State University (US), $^7$ Central European University (HU), $^8$ UCLouvain (BE), $^9$ Adam Mickiewicz University (PL), $^10$ University of Tartu (EE)}
+
+\bigskip
+\includegraphics[width=0.45\textwidth]{../images/iavs_2022_logo}\\
+ 
+\\
+\bigskip
+\centering \tiny{$^\star$ From the Traviata (1853) opera by Giuseppe Verdi: `torment and delight of the heart'}
+ }
+\date[] % (optional)
+{}
+\subject{Informatik}
+
+
+
+\maketitle	
+% 
+% \logo{\includegraphics[height=0.8cm]{../images/network_coverage.jpg}\vspace{220pt}}
+
+\AtBeginSection[] % Do nothing for \section*
+{	
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[currentsection,currentsubsection,currentsubsubsection]
+\end{frame}
+}
+
+\section{Introduction}
+\begin{frame}
+\frametitle{Introduction: Worldwide sets on biodiversity}
+\centering
+\includegraphics[width=1\textwidth]{../images/splot}\\
+ \end{frame}
+
+ \begin{frame}
+\frametitle{Introduction: sampling effort bias}
+\centering
+\includegraphics[width=1\textwidth]{../images/mammals}\\
+ \end{frame}
+
+  \begin{frame}
+\frametitle{Introduction: sampling effort bias}
+\centering
+\includegraphics[width=1\textwidth]{../images/carto_continents_sqrt}\\
+ \end{frame}
+
+\begin{frame}
+\frametitle{Aim}
+The aim of this talk is to \textbf{explicitly map by cartograms} the \textbf{sampling effort bias} associated with predictive mapping of species distributions and diversity at large geographic scales, facing pros and cons of the method.
+\\
+\bigskip
+\pause In particular we aim to:
+\begin{itemize}
+\item \pause Explain the \textbf{theory} behind cartograms
+\item \pause Show how to make use of sampling effort bias as a \textbf{covariate} in SDMs
+\item \pause Propose new \textbf{challenging ideas} on cartograms for SDMs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Aim: Free and Open Source Software}
+\centering
+\includegraphics[width=0.9\textwidth]{../images/tree.pdf}
+\end{frame}
+
+
+\section{Theory behind cartograms}
+\begin{frame}
+\frametitle{Theory behind cartograms}
+\centering
+\includegraphics[width=0.7\textwidth]{../images/gastner_pnas.png}\\
+\includegraphics[width=0.6\textwidth]{../images/cartogram_gastner.png}\\
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Theory behind cartograms}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/gastner_pnas.png}\\
+
+\begin{equation}
+ \textbf{J} = \textbf{v}(\textbf{r},\textit{t})\rho(\textbf{r},\textit{t})
+\end{equation}\\
+where:\\ \textbf{v}(\textbf{r},\textit{t}) = velocity at position \textbf{r} and time \textit{t} \\ $\rho$(\textbf{r},\textit{t}) = density at position \textbf{r} and time \textit{t}
+
+\end{frame}
+%  
+\section{Sampling effort bias as a covariate in SDMs}
+
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.45\textwidth]{../images/gags/strange_frog}\\
+- A frog from below -
+\end{frame}
+% 
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.6\textwidth]{../images/bayesian_model.png}
+\end{frame}
+% 
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.9\textwidth]{../images/lonicera.png}\\
+\end{frame}
+% 
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.9\textwidth]{../images/ecocom_usda.png}\\
+\end{frame}
+% 
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.9\textwidth]{../images/ecocom2.png}\\
+\end{frame}
+
+% \begin{frame}
+% \frametitle{Sampling effort bias as a covariate in SDMs}
+% \centering
+% \includegraphics[width=1\textwidth]{../images/stoten3}\\
+% \end{frame}
+% 
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=0.4\textwidth]{../images/abies_lavarone.jpg}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=.95\textwidth]{../images/stoten2}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Sampling effort bias as a covariate in SDMs}
+\centering
+\includegraphics[width=1\textwidth]{../images/stoten3}\\
+\end{frame}
+
+\section{Challenging ideas}
+
+\begin{frame}
+\frametitle{Challenging ideas:1- Virtual species}
+\centering
+\includegraphics[width=.8\textwidth]{../images/pca_virtual.png}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenging ideas:1- Virtual species}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/virtual_species_2D.png}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenging ideas:1- Virtual species}
+\centering
+\includegraphics[width=1\textwidth]{../images/Rplot01.png}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenging ideas: 2- Minimum Mapping Unit (MMU)}
+\centering
+\includegraphics[width=0.7\textwidth]{../images/cartograms_comparison.png}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Challenging ideas: 2- Minimum Mapping Unit (MMU)}
+\centering
+\includegraphics[width=0.9\textwidth]{../images/carto_10deg_countries_log.png}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Coda}
+\centering
+\includegraphics[width=1\textwidth]{../images/ecocom_cartograms.png}\\
+\end{frame}
+
+% % 
+\begin{frame}
+ \frametitle{Many thanks!}
+\includegraphics[width=0.2\textwidth]{../images/logo_unibo.jpg}\\
+\smallskip
+\scriptsize{Contact:}\\
+\scriptsize{Duccio Rocchini, PhD} -
+\scriptsize{Full Professor $@$:}\\
+\scriptsize{BIOME Lab, Dept. Biological, Geological and Enviromental Sciences, \\Alma Mater Studiorum University of Bologna, Italy}\\
+\scriptsize{duccio.rocchini@unibo.it - https://www.unibo.it/sitoweb/duccio.rocchini/en}\\
+\vspace{5mm} %5mm vertical space
+\includegraphics[width=0.2\textwidth]{../images/berlin.png}\\
+\smallskip
+\tiny{This presentation has been made by only relying on Free and Open Source philosophy: Linux, \LaTeX, \textsf{R}, GRASS GIS.}
+\\
+\smallskip
+\includegraphics[width=0.2\textwidth]{../images/cc_by_logo_png.png}\\
+\end{frame}
+
+
+\end{document}
