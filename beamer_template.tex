@@ -1,0 +1,118 @@
+\documentclass{beamer}
+\usepackage{listings}
+\usepackage{color}
+
+\usetheme{Frankfurt}
+%  themes: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_theme.html
+\usecolortheme{dove} 
+%  colors: https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_color.html
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\title{My first presentation}
+\author{Duccio Rocchini}
+
+\institute{Alma Mater Studiorum - University of Bologna\\
+\bigskip
+\includegraphics[width=0.5\textwidth]{logo_unibo.png}
+}
+
+\begin{document}
+\maketitle 
+
+\AtBeginSection[] % Do nothing for \section*
+{	
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[currentsection,currentsubsection,currentsubsubsection]
+\end{frame}
+}
+
+
+\section{Introduction}
+
+\begin{frame}
+ \frametitle{This is mt first slide!}
+\scriptsize{In this study I will face remote sensing problems...}
+% see here for additional text size!: https://it.overleaf.com/learn/latex/Font_sizes,_families,_and_styles
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Itemizing}
+ \begin{itemize}
+  \item Remote sensing is a powerful tool
+  \item It can be used for diversity estimate
+  \item It can be used in ecological informatics
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Itemizing}
+ \begin{itemize}
+  \item<1> Remote sensing is a powerful tool
+  \item<2> It can be used for diversity estimate
+  \item<3> It can be used in ecological informatics
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Itemizing}
+ \begin{itemize}
+  \item<1-> Remote sensing is a powerful tool
+  \item<2-> It can be used for diversity estimate
+  \item<3-> It can be used in ecological informatics
+ \end{itemize}
+\end{frame}
+
+%
+\section{Methods}
+
+\subsection{Formulas}
+\begin{frame}
+ \frametitle{My first formula in a presentation}
+ \begin{equation}
+  I=\frac{\sqrt[3]{\frac{\displaystyle\sum_{i=1}^{N} S}{N}}}{\alpha_{\gamma_{\sqrt{\beta}}}}
+ \end{equation}
+\end{frame}
+
+\subsection{Code}
+\begin{frame}
+\frametitle{My code}
+     \lstinputlisting[language=R]{code.r}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}
+ \frametitle{Output imagery}
+ \centering
+ \includegraphics[width=0.3\textwidth]{andessnow_amo_202135_lrg.jpg} \\
+ \bigskip % oppure \smallskip
+ This is the output of my analysis
+\end{frame}
+
+\begin{frame}
+ \frametitle{Output imagery}
+ \centering
+ \includegraphics[width=0.4\textwidth]{andessnow_amo_202135_lrg.jpg} 
+ \includegraphics[width=0.4\textwidth]{andessnow_amo_202135_lrg.jpg} 
+\end{frame}
+
+\begin{frame}
+ \frametitle{Output imagery}
+ \centering
+ \includegraphics[width=0.3\textwidth]{andessnow_amo_202135_lrg.jpg} 
+ \includegraphics[width=0.3\textwidth]{andessnow_amo_202135_lrg.jpg} \\
+ \includegraphics[width=0.3\textwidth]{andessnow_amo_202135_lrg.jpg} 
+ \includegraphics[width=0.3\textwidth]{andessnow_amo_202135_lrg.jpg}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
